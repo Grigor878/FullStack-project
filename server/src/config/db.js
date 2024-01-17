@@ -1,17 +1,21 @@
-const mysql = require('mysql2/promise');
-
 require('dotenv').config();
 
-const dbConfig = {
-  host: process.env.DB_HOST || 'localhost',
-  user: process.env.DB_USER || 'root',
-  password: process.env.DB_PASSWORD || '',
-  database: process.env.DB_NAME || '',
-  waitForConnections: true,
-  connectionLimit: 10,
-  queueLimit: 0,
+const mongoose = require('mongoose');
+
+const url = process.env.MONGODB_URI || '';
+
+// const User = require('./models/userModel')
+
+async function connectToMongo() {
+  try {
+    await mongoose.connect(url);
+    console.log('Connected to MongoDB');
+  } catch (error) {
+    console.error('Error connecting to MongoDB:', error);
+    throw error;
+  }
+}
+
+module.exports = {
+  connectToMongo,
 };
-
-const pool = mysql.createPool(dbConfig);
-
-module.exports = pool;
