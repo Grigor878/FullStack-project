@@ -15,3 +15,5 @@ const startServer = async () => {
 };
 
 startServer();
+
+// const User = require('./src/models/userModel')

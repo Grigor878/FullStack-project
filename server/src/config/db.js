@@ -4,8 +4,6 @@ const mongoose = require('mongoose');
 
 const url = process.env.MONGODB_URI || '';
 
-// const User = require('./models/userModel')
-
 async function connectToMongo() {
   try {
     await mongoose.connect(url);
@@ -17,5 +15,5 @@ async function connectToMongo() {
 }
 
 module.exports = {
-  connectToMongo,
+  connectToMongo
 };
